@@ -9,9 +9,7 @@ const TodoForm = ()=>{
    }
   const addTodo = ()=>{
     setTodo([...todo,todoElem]);
-    localStorage.setItem("TodoList", JSON.stringify(todo));
     setTodoElem("");
-    
   }
   const removeTodo = (todoElem)=>{
     const newTodo = todo.filter((elem)=>{
@@ -21,6 +19,9 @@ const TodoForm = ()=>{
     });
     setTodo(newTodo);
   }
+
+ 
+
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem("TodoList"));
     if (storedTodos) {
@@ -28,6 +29,9 @@ const TodoForm = ()=>{
     }
     
   },[]);
+  useEffect(() => {
+    localStorage.setItem('TodoList',JSON.stringify(todo))
+   }, [todo]);
     return(
         <>
         <div>
