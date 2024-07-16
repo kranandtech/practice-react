@@ -4,6 +4,7 @@ import TodoList from "./TodoList";
 const TodoForm = ()=>{
    const [todoElem,setTodoElem] = useState("");
    const [todo,setTodo] = useState([]);
+  
    const addElem = (e)=>{
     setTodoElem(e.target.value);
    }
@@ -20,18 +21,25 @@ const TodoForm = ()=>{
     setTodo(newTodo);
   }
 
- 
+  
 
   useEffect(() => {
+  
+    console.log("get item");
     const storedTodos = JSON.parse(localStorage.getItem("TodoList"));
     if (storedTodos) {
       setTodo(storedTodos);
+      
     }
     
   },[]);
+  
   useEffect(() => {
+    console.log("set item");
     localStorage.setItem('TodoList',JSON.stringify(todo))
    }, [todo]);
+  
+
     return(
         <>
         <div>
